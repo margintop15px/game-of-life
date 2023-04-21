@@ -1,0 +1,23 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/main" "src/test"]
+
+ :nrepl
+ {:port 3333}
+
+ :dev-http
+ {8080 "public"}
+
+ :dependencies
+ [[reagent "1.2.0"]]
+
+ :builds
+ {:app  {:target   :browser
+         :modules  {:main {:init-fn otus.core/mount}}
+         :devtools {:after-load otus.core/mount}}
+
+  :test {:target     :browser-test
+         :test-dir   "public/js/test"
+         :js-options {:ignore-asset-requires true}
+         :devtools   {:http-port 8023
+                      :http-root "public/js/test"}}}}
